@@ -69,9 +69,10 @@ def read_video_to_frames(video_name):
         ret, frame_bgr = cap.read()
         if not ret:
             print("Reached the end of the video or failed to read the frame.")
-            break  # 如果没有帧可以读取，则退出循环
+            break
         if frame_bgr is None:
             break
+        # too large may cause error, so make sure the face position is in range of 1300x900
         height = frame_bgr.shape[0]
         width = frame_bgr.shape[1]
         if height > 1300:
